@@ -1,0 +1,10 @@
+.clock {
+  text-align: center;
+  font-family: monospace;
+  font-size: 2rem;
+}
+
+.clock .date {
+  font-size: 1rem;
+  color: #aaa;
+}
