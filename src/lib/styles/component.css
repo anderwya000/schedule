@@ -1,10 +1,36 @@
 .clock {
-  text-align: center;
-  font-family: monospace;
-  font-size: 2rem;
+    display: block;
+    text-align: center;
+    font-family: monospace;
+    font-size: 2rem;
 }
 
 .clock .date {
-  font-size: 1rem;
-  color: #aaa;
+    font-size: 1rem;
+    color: #aaa;
+}
+
+.schedule {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: monospace;
+}
+
+.class {
+    display: flex;
+    justify-content: space-between;
+    width: 240px;
+    padding: 0.25rem 0.5rem;
+    color: black;
+}
+
+.class.now {
+    color: #ffcccc;
+    /* light whiteish red */
+    font-weight: bold;
+}
+
+.time {
+    width: 100px;
 }
