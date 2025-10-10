@@ -11,26 +11,23 @@
 }
 
 .schedule {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: monospace;
+  font-family: 'PT Mono', monospace;
+  width: 80%;
+  margin: 1rem auto;
+  border-collapse: collapse;
 }
 
-.class {
-    display: flex;
-    justify-content: space-between;
-    width: 240px;
-    padding: 0.25rem 0.5rem;
-    color: black;
+.schedule th, .schedule td {
+  padding: 0.25rem 0.5rem;
+  text-align: left;
+  color: black;
 }
 
-.class.now {
-    color: #ffcccc;
-    /* light whiteish red */
-    font-weight: bold;
+.schedule th {
+  font-weight: bold;
 }
 
-.time {
-    width: 100px;
+tr.now {
+  color: #ff6666;
+  font-weight: bold;
 }
