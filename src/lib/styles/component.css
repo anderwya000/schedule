@@ -1,32 +1,31 @@
-.clock {
-  text-align: center;
-  font-family: monospace;
-  font-size: 2rem;
+@import url('https://unpkg.com/@catppuccin/palette/css/catppuccin.css');
+
+body {
+    background-color: var(--ctp-mocha-base);
+    color: var(--ctp-mocha-text);
+    font-family: 'PT Mono';
 }
 
-.clock .date {
-  font-size: 1rem;
-  color: #aaa;
+*:link {
+    color: var(--ctp-mocha-blue);
 }
 
-.schedule {
-  font-family: 'PT Mono', monospace;
-  width: 80%;
-  margin: 1rem auto;
-  border-collapse: collapse;
+.clock .label {
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
-.schedule th, .schedule td {
-  padding: 0.25rem 0.5rem;
-  text-align: left;
-  color: black;
+.clock .time {
+    font-size: xxx-large;
+    padding: 15px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.schedule th {
-  font-weight: bold;
+#schedule {
+    width: 100%;
 }
 
-tr.now {
-  color: #ff6666;
-  font-weight: bold;
+#schedule .now {
+    color: var(--ctp-mocha-blue)
 }

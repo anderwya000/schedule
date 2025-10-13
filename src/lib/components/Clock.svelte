@@ -1,14 +1,13 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount } from 'svelte';
   import dayjs from 'dayjs';
 
-  export let format = 'HH:mm:ss';
+  export let format = '[<span class="label">Time: </span><div class="time">]HH:mm:ss[</div>]';
   let time = '';
 
   let interval;
 
   onMount(() => {
-    // Initialize time right away on mount (client-side only)
     time = dayjs().format(format);
     interval = setInterval(() => {
       time = dayjs().format(format);
@@ -18,4 +17,4 @@
   });
 </script>
 
-<span class = "clock">{time}</span>
+<span class = "clock">{@html time}</span>

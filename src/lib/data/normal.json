@@ -1,0 +1,46 @@
+[
+    {
+        "type": "class",
+        "period": 1,
+        "start": "7:20",
+        "end": "8:32"
+    },
+    {
+        "type": "class",
+        "period": 2,
+        "start": "8:37",
+        "end": "9:49"
+    },
+    {
+        "type": "class",
+        "period": 3,
+        "start": "9:54",
+        "end": "11:06"
+    },
+    {
+        "type": "other",
+        "period": "Lunch",
+        "label": "Lunch",
+        "start": "11:06",
+        "end": "11:36"
+    },
+    {
+        "type": "other",
+        "period": "SH",
+        "label": "Study Hall",
+        "start": "11:41",
+        "end": "12:11"
+    },
+    {
+        "type": "class",
+        "period": 4,
+        "start": "12:16",
+        "end": "13:28"
+    },
+    {
+        "type": "class",
+        "period": 5,
+        "start": "13:33",
+        "end": "14:45"
+    }
+]
