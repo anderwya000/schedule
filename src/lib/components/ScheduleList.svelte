@@ -1,7 +1,6 @@
 <script>
     import { onMount, onDestroy } from "svelte";
-    import sched_normal from "../data/normal.json";
-    import sched_sst from "../data/sst.json";
+    export let schedule = [];
     import dayjs from "dayjs";
     import customParseFormat from "dayjs/plugin/customParseFormat";
 
@@ -14,7 +13,6 @@
         4: "AP Computer Science A",
         5: "Physical Education",
     };
-    const schedule = dayjs().day() == 2 ? sched_sst : sched_normal;
 
     let now = dayjs();
     const timer = setInterval(() => (now = dayjs()), 1000);

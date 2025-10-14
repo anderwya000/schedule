@@ -12,4 +12,4 @@
 
 <Clock />
 <RemainingTime {schedule} />
-<ScheduleList />
+<ScheduleList {schedule} />
