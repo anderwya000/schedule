@@ -11,10 +11,12 @@
         4: "AP Computer Science A",
         5: "Physical Education",
     };
-    const schedule = dayjs().day() == 2 ? sched_normal : sched_sst;
+    const schedule = dayjs().day() == 2 ? sched_sst : sched_normal;
 
     let now = dayjs();
     const timer = setInterval(() => (now = dayjs()), 1000);
+
+    
 
     function ordinal_suffix_of(i) {
         let j = i % 10,
@@ -45,7 +47,7 @@
         {#each schedule as item}
             <tr>
                 <td>
-                    {#if typeof item.period === "number"}
+                    {#if typeof item.period == "number"}
                         {ordinal_suffix_of(item.period)}
                     {:else}
                         {item.period}
