@@ -1,8 +1,11 @@
 <script>
-    import { onMount } from "svelte";
+    import { onMount, onDestroy } from "svelte";
     import sched_normal from "../data/normal.json";
     import sched_sst from "../data/sst.json";
     import dayjs from "dayjs";
+    import customParseFormat from "dayjs/plugin/customParseFormat";
+
+    dayjs.extend(customParseFormat);
 
     const classNames = {
         1: "AP Human Geography",
@@ -15,8 +18,6 @@
 
     let now = dayjs();
     const timer = setInterval(() => (now = dayjs()), 1000);
-
-    
 
     function ordinal_suffix_of(i) {
         let j = i % 10,
@@ -32,6 +33,20 @@
         }
         return i + "th";
     }
+
+    function isCurrentClass(item) {
+        if (!item.start || !item.end) return false;
+
+        const [startH, startM] = item.start.split(":").map(Number);
+        const [endH, endM] = item.end.split(":").map(Number);
+
+        const start = now.hour(startH).minute(startM).second(0);
+        const end = now.hour(endH).minute(endM).second(0);
+
+        return now.isAfter(start) && now.isBefore(end);
+    }
+
+    onDestroy(() => clearInterval(timer));
 </script>
 
 <table id="schedule">
@@ -45,7 +60,7 @@
     </thead>
     <tbody>
         {#each schedule as item}
-            <tr>
+            <tr class={isCurrentClass(item) ? "now" : ""}>
                 <td>
                     {#if typeof item.period == "number"}
                         {ordinal_suffix_of(item.period)}

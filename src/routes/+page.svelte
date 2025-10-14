@@ -1,8 +1,15 @@
 <link href="https://fonts.googleapis.com/css2?family=PT+Mono" rel="stylesheet">
 <script>
-    import Clock from "$lib/components/Clock.svelte";
-    import ScheduleList from "$lib/components/ScheduleList.svelte";
+  import Clock from "$lib/components/Clock.svelte";
+  import ScheduleList from "$lib/components/ScheduleList.svelte";
+  import RemainingTime from "$lib/components/RemainingTime.svelte";
+  import sched_normal from "$lib/data/normal.json";
+  import sched_sst from "$lib/data/sst.json";
+  import dayjs from "dayjs";
 
+  const schedule = dayjs().day() === 2 ? sched_sst : sched_normal;
 </script>
+
 <Clock />
+<RemainingTime {schedule} />
 <ScheduleList />

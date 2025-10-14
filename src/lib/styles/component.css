@@ -26,8 +26,7 @@ body {
     width: 100%;
 }
 
-:global(#schedule tr.now) {
-    color: var(--ctp-mocha-red);
+#schedule .now {
+    color: var(--ctp-mocha-blue); /* or red to test */
     font-weight: bold;
-    background: color-mix(in srgb, var(--ctp-mocha-blue) 14%, transparent);
 }
