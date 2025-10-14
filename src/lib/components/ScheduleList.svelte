@@ -13,6 +13,9 @@
     };
     const schedule = dayjs().day() == 2 ? sched_normal : sched_sst;
 
+    let now = dayjs();
+    const timer = setInterval(() => (now = dayjs()), 1000);
+
     function ordinal_suffix_of(i) {
         let j = i % 10,
             k = i % 100;
