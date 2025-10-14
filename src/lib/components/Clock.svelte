@@ -1,20 +1,24 @@
 <script>
-  import { onMount } from 'svelte';
-  import dayjs from 'dayjs';
+  import { onMount, onDestroy, tick } from "svelte";
+  import dayjs from "dayjs";
 
-  export let format = '[<span class="label">Time: </span><div class="time">]HH:mm:ss[</div>]';
-  let time = '';
-
+  export let format = 'HH:mm:ss';
+  let time = ""; 
   let interval;
 
-  onMount(() => {
+  async function updateTime() {
     time = dayjs().format(format);
-    interval = setInterval(() => {
-      time = dayjs().format(format);
-    }, 1000);
+  }
 
-    return () => clearInterval(interval);
+  onMount(async () => {
+    updateTime(); 
+    interval = setInterval(updateTime, 1000);
   });
+
+  onDestroy(() => clearInterval(interval));
 </script>
 
-<span class = "clock">{@html time}</span>
+<span class="clock">
+    <span class="label">Time: </span>
+    <div class="time">{@html time}</div>
+</span>
