@@ -27,6 +27,21 @@ body {
 }
 
 #schedule .now {
-    color: var(--ctp-mocha-blue); /* or red to test */
+    color: var(--ctp-mocha-blue);
     font-weight: bold;
+}
+
+input[type="text"] {
+    font-family: 'PT Mono';
+    background-color: var(--ctp-mocha-surface0);
+    color: var(--ctp-mocha-text);
+    border: 1px solid var(--ctp-mocha-surface1);
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin: 2px 0;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--ctp-mocha-blue);
 }
