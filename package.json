@@ -19,6 +19,7 @@
 	},
 	"dependencies": {
 		"@catppuccin/palette": "^1.7.1",
-		"dayjs": "^1.11.18"
+		"dayjs": "^1.11.18",
+		"svelte-persisted-store": "^0.12.0"
 	}
 }

@@ -3,16 +3,10 @@
     export let schedule = [];
     import dayjs from "dayjs";
     import customParseFormat from "dayjs/plugin/customParseFormat";
+    import { get } from "svelte/store";
+    import { classes } from "../stores/preferences";
 
     dayjs.extend(customParseFormat);
-
-    const classNames = {
-        1: "AP Human Geography",
-        2: "Honors English",
-        3: "Symphonic Band",
-        4: "AP Computer Science A",
-        5: "Physical Education",
-    };
 
     let now = dayjs();
     const timer = setInterval(() => {
@@ -72,7 +66,7 @@
                 </td>
                 <td>
                     {#if item.type === "class"}
-                        {classNames[item.period] || item.period}
+                        {$classes[item.period] || item.period}
                     {:else}
                         {item.label}
                     {/if}
