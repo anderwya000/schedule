@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/favicon.png" />
+	<link rel="icon" href="/schedule/favicon.png" />
     <title>Schedule</title>
 </svelte:head>
 
