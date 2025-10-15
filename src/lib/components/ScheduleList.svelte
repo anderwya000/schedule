@@ -15,7 +15,9 @@
     };
 
     let now = dayjs();
-    const timer = setInterval(() => (now = dayjs()), 1000);
+    const timer = setInterval(() => {
+        now = dayjs();
+    }, 1000);
 
     function ordinal_suffix_of(i) {
         let j = i % 10,
@@ -45,6 +47,8 @@
     }
 
     onDestroy(() => clearInterval(timer));
+
+    $: highlighted = schedule.map((item) => isCurrentClass(item, now));
 </script>
 
 <table id="schedule">
@@ -57,8 +61,8 @@
         </tr>
     </thead>
     <tbody>
-        {#each schedule as item}
-            <tr class={isCurrentClass(item) ? "now" : ""}>
+        {#each schedule as item, i}
+            <tr class={highlighted[i] ? "now" : ""}>
                 <td>
                     {#if typeof item.period == "number"}
                         {ordinal_suffix_of(item.period)}
