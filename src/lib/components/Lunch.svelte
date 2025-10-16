@@ -6,32 +6,32 @@
     import { onMount } from "svelte";
 
     let rawData;
-    let data;
+    let todayData, tomorrowData;
+    let todayGrouped = [], tomorrowGrouped = [];
     let error;
-    let grouped;
 
-    function processData(raw) {
-        const now = new Date();
-        const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    function formatDate(date) {
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    }
 
-        let todayMeal = raw.data.find((m) => m.day === today);
-        if (todayMeal) {
-            todayMeal = JSON.parse(todayMeal.setting);
-        }
+    function processData(raw, dayStr) {
+        let meal = raw.data.find((m) => m.day === dayStr);
+        if (!meal) return null;
 
-        grouped = [];
+        meal = JSON.parse(meal.setting);
+        const grouped = [];
         let currentCategory;
-        if (todayMeal) {
-            for (const item of todayMeal.current_display) {
-                if (item.type === "category") {
-                    currentCategory = { name: item.name, recipes: [] };
-                    grouped.push(currentCategory);
-                } else if (item.type === "recipe" && currentCategory) {
-                    currentCategory.recipes.push(item.name);
-                }
+
+        for (const item of meal.current_display) {
+            if (item.type === "category") {
+                currentCategory = { name: item.name, recipes: [] };
+                grouped.push(currentCategory);
+            } else if (item.type === "recipe" && currentCategory) {
+                currentCategory.recipes.push(item.name);
             }
         }
-        return todayMeal;
+
+        return grouped;
     }
 
     onMount(async () => {
@@ -41,19 +41,21 @@
             const month = now.getMonth() + 1;
 
             const response = await fetch(
-                `https://api.allorigins.win/get?url=${encodeURIComponent(`https://menus.healthepro.com/api/organizations/2455/menus/108947/year/${year}/month/${month}/date_overwrites`)}`,
+                `https://api.allorigins.win/get?url=${encodeURIComponent(`https://menus.healthepro.com/api/organizations/2455/menus/108947/year/${year}/month/${month}/date_overwrites`)}`
             );
 
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
             const fetched = await response.json();
             rawData = JSON.parse(fetched.contents);
 
-            data = processData(rawData);
+            const today = formatDate(now);
+            const tomorrow = formatDate(new Date(now.getTime() + 86400000));
+
+            todayGrouped = processData(rawData, today);
+            tomorrowGrouped = processData(rawData, tomorrow);
         } catch (e) {
-            error = e;
+            error = e.message;
             console.error(e);
         }
     });
@@ -64,16 +66,39 @@
     <summary>Lunch</summary>
     {#if error}
         <p style="color:red">{error}</p>
-    {:else if data}
-        {#each grouped as group}
-            <h4>{group.name}</h4>
-            <ul>
-                {#each group.recipes as r}
-                    <li>{r}</li>
-                {/each}
-            </ul>
-        {/each}
     {:else}
-        <p>Loading...</p>
+        <div class="days">
+            <div>
+                <h3>Today</h3>
+                {#if todayGrouped}
+                    {#each todayGrouped as group}
+                        <h4>{group.name}</h4>
+                        <ul>
+                            {#each group.recipes as r}
+                                <li>{r}</li>
+                            {/each}
+                        </ul>
+                    {/each}
+                {:else}
+                    <p>No data for today.</p>
+                {/if}
+            </div>
+
+            <div>
+                <h3>Tomorrow</h3>
+                {#if tomorrowGrouped}
+                    {#each tomorrowGrouped as group}
+                        <h4>{group.name}</h4>
+                        <ul>
+                            {#each group.recipes as r}
+                                <li>{r}</li>
+                            {/each}
+                        </ul>
+                    {/each}
+                {:else}
+                    <p>No data for tomorrow.</p>
+                {/if}
+            </div>
+        </div>
     {/if}
 </details>
