@@ -45,3 +45,25 @@ input[type="text"]:focus {
     outline: none;
     border-color: var(--ctp-mocha-blue);
 }
+
+.days {
+    display: flex;
+    gap: 2rem;
+}
+
+.days div {
+    flex: 1;
+}
+
+ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+h3 {
+    margin: 20px 0;
+}
+
+h4 {
+    margin: 10px 0;
+}
