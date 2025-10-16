@@ -6,6 +6,7 @@
     import sched_sst from "$lib/data/sst.json";
     import dayjs from "dayjs";
     import Settings from "$lib/components/Settings.svelte";
+    import Lunch from "$lib/components/Lunch.svelte";
 
     const schedule = dayjs().day() === 2 ? sched_sst : sched_normal;
 </script>
@@ -18,4 +19,5 @@
 <Clock />
 <RemainingTime {schedule} />
 <ScheduleList {schedule} />
+<Lunch />
 <Settings />
