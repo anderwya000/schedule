@@ -1,13 +1,17 @@
 @import url('https://unpkg.com/@catppuccin/palette/css/catppuccin.css');
 
+:root {
+  color-scheme: light dark;
+}
+
 body {
-    background-color: var(--ctp-mocha-base);
-    color: var(--ctp-mocha-text);
+    background-color: light-dark(var(--ctp-latte-base), var(--ctp-mocha-base));
+    color: light-dark(var(--ctp-latte-text), var(--ctp-mocha-text));
     font-family: 'PT Mono';
 }
 
 *:link {
-    color: var(--ctp-mocha-blue);
+    color: light-dark(var(--ctp-latte-blue), var(--ctp-mocha-blue));
 }
 
 .clock .label {
@@ -27,15 +31,15 @@ body {
 }
 
 #schedule .now {
-    color: var(--ctp-mocha-blue);
+    color: light-dark(var(--ctp-latte-blue), var(--ctp-mocha-blue));
     font-weight: bold;
 }
 
 input[type="text"] {
     font-family: 'PT Mono';
-    background-color: var(--ctp-mocha-surface0);
-    color: var(--ctp-mocha-text);
-    border: 1px solid var(--ctp-mocha-surface1);
+    background-color: light-dark(var(--ctp-latte-surface0), var(--ctp-mocha-surface0));
+    color: light-dark(var(--ctp-latte-text), var(--ctp-mocha-text));
+    border: 1px solid light-dark(var(--ctp-latte-surface1), var(--ctp-mocha-surface1));
     padding: 2px 4px;
     border-radius: 4px;
     margin: 2px 0;
@@ -43,7 +47,7 @@ input[type="text"] {
 
 input[type="text"]:focus {
     outline: none;
-    border-color: var(--ctp-mocha-blue);
+    border-color: light-dark(var(--ctp-latte-blue), var(--ctp-mocha-blue));
 }
 
 .days {
